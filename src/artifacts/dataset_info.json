@@ -1,0 +1,30 @@
+{
+    "dataset_name": "../data/adult/adult_train.csv",
+    "dataset_shape": {
+        "rows": 48842,
+        "columns": 15
+    },
+    "target_column": "income",
+    "features_used": [
+        "age",
+        "workclass",
+        "fnlwgt",
+        "education",
+        "education_num",
+        "marital_status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "capital_gain",
+        "capital_loss",
+        "hours_per_week",
+        "native_country"
+    ],
+    "split_fractions": {
+        "train": 0.5666434625936694,
+        "validation": 0.10001637934564514,
+        "test": 0.33334015806068545
+    },
+    "random_state": 42
+}

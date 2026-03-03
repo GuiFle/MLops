@@ -1,0 +1,14 @@
+{
+    "train_dataset": "../data/adult/adult_train.csv",
+    "test_dataset": "../data/adult/adult_test.csv",
+    "target": "income",
+    "metrics": {
+        "accuracy": 0.8574411891161476,
+        "f1_score": 0.6601259335188168
+    },
+    "hyperparameters": {
+        "classifier": "DecisionTreeClassifier",
+        "max_depth": 10
+    },
+    "timestamp": "2026-03-03T16:06:59.229938"
+}
