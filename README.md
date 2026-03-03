@@ -1,7 +1,45 @@
-Ce dataset porte sur la prévision des éruptions solaires à partir des caractéristiques des régions actives du Soleil. Il est intéressant car les flares peuvent avoir un impact important sur les satellites et les communications sur Terre.
+# Projet MLOps – Prédiction du revenu des adultes
 
-La tâche peut être formulée comme une classification binaire ou multi-label, si l’on cherche à prédire si une flare de type C, M ou X va se produire (oui/non).
+## Description
 
-Les données contiennent 10 variables explicatives (principalement catégorielles codées) et 3 variables cibles liées aux flares. Les variables sont discrètes et de petite dimension.
+Ce projet illustre un **pipeline complet de Machine Learning en MLOps**, comprenant :
 
-https://archive.ics.uci.edu/dataset/89/solar+flare
+- Préparation et nettoyage des données.
+- Entraînement d’un modèle de classification pour prédire si le revenu d’un individu dépasse 50K$/an.
+- Évaluation des performances avec des métriques standard (accuracy, F1-score, etc.).
+- API FastAPI pour les prédictions.
+- Interface web Streamlit pour l’exploration des données et la prédiction individuelle ou en batch.
+- Profiling automatisé du dataset avec un rapport HTML interactif.
+
+Le projet utilise le dataset **Adult Census Income** provenant de l’UCI Machine Learning Repository.
+https://archive.ics.uci.edu/dataset/2/adult
+---
+
+## Structure du projet
+
+MLOPS_TP1/
+├── data/ # Données brutes et CSV
+│ └── adult/
+├── src/ # Code source
+│ ├── api.py # API FastAPI pour les prédictions
+│ ├── app.py # Streamlit pour interface utilisateur
+│ ├── training.py # Entraînement du modèle
+│ ├── analysis.py # Analyse exploratoire
+│ └── artifacts/ # Modèles, rapports, métriques sauvegardés
+├── Dockerfile # Conteneurisation
+├── requirements.txt # Dépendances Python
+└── README.md # Ce fichier
+
+## Liste des commandes a portentiellement utiliser
+
+## Venv
+source .venv/bin/activate
+## Requirement
+pip freeze > requirements.txt
+pip install -r requirements.txt
+## API
+uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
+## Application
+streamlit run src/app.py --server.port=8501 --server.address=0.0.0.0
+## A faire
+Docker (permission admin)
