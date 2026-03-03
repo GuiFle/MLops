@@ -16,7 +16,7 @@ https://archive.ics.uci.edu/dataset/2/adult
 ---
 
 ## Structure du projet
-
+```
 MLOPS_TP1/
 ├── data/ # Données brutes et CSV
 │ └── adult/
@@ -29,7 +29,7 @@ MLOPS_TP1/
 ├── Dockerfile # Conteneurisation
 ├── requirements.txt # Dépendances Python
 └── README.md # Ce fichier
-
+```
 ## Liste des commandes a portentiellement utiliser
 
 ## Venv
