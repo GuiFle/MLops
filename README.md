@@ -30,7 +30,7 @@ MLOPS_TP1/
 ├── requirements.txt # Dépendances Python
 └── README.md # Ce fichier
 ```
-## Liste des commandes a portentiellement utiliser
+## Liste des commandes a potentiellement utiliser
 
 ## Venv
 source .venv/bin/activate
@@ -41,5 +41,12 @@ pip install -r requirements.txt
 uvicorn src.api:app --host 0.0.0.0 --port 8000 --reload
 ## Application
 streamlit run src/app.py --server.port=8501 --server.address=0.0.0.0
-## A faire
-Docker (permission admin)
+## Docker
+sudo apt update
+sudo apt install docker.io
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker build -t adult-ml-app .
+docker run -d -p 8000:8000 -p 8501:8501 --name adult-container adult-ml-app
+docker ps
