@@ -11,7 +11,7 @@ import time
 # =========================
 # Parameters
 # =========================
-ARTIFACTS_DIR = "artifacts/"
+ARTIFACTS_DIR = "src/artifacts/"
 MODEL_FILE = os.path.join(ARTIFACTS_DIR, "model.joblib")
 SCHEMA_FILE = os.path.join(ARTIFACTS_DIR, "feature_schema.json")
 DEFAULT_CSV = os.path.join("..", "data", "adult", "adult_test.csv")
