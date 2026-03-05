@@ -18,5 +18,5 @@ COPY data/ data/
 EXPOSE 8501
 
 # Start FastAPI in background, then Streamlit
-CMD uvicorn src.mlops_tp.api:app --host 0.0.0.0 --port 8000 & \
-    streamlit run src/mlops.py --server.port=8501 --server.address=0.0.0.0
+CMD uvicorn src.api:app --host 0.0.0.0 --port 8000 & \
+    streamlit run src/app.py --server.port=8501 --server.address=0.0.0.0
