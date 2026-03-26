@@ -105,13 +105,40 @@ with mlflow.start_run(experiment_id=experiment.experiment_id) as run:
     # Training
     pipeline.fit(X_train, y_train)
 
-    # Evaluation
-    y_test_pred = pipeline.predict(X_test)
+    # =========================
+    # Evaluation WITH TRACING (CLEAN)
+    # =========================
+
+    @mlflow.trace(name="batch_inference")
+    def predict_batch(X):
+        return pipeline.predict(X)
+
+
+    @mlflow.trace(name="single_prediction")
+    def predict_one(row_dict):
+        df = pd.DataFrame([row_dict])
+        return pipeline.predict(df)[0]
+
+
+    # ---- Batch prediction (metrics) ----
+    y_test_pred = predict_batch(X_test)
+
     accuracy = accuracy_score(y_test, y_test_pred)
     f1 = f1_score(y_test, y_test_pred, pos_label=">50K")
 
-    mlflow.log_metric("accuracy", accuracy)
-    mlflow.log_metric("f1_score", f1)
+    # ✅ FORCE logging clearly
+    mlflow.log_metrics({
+        "accuracy": float(accuracy),
+        "f1_score": float(f1)
+    })
+
+
+    # ---- Per-sample tracing (Usage tab) ----
+    for _, row in X_test.head(50).iterrows():
+        try:
+            predict_one(row.to_dict())
+        except Exception:
+            pass
 
     # Take a small sample
     sample_df = X_test.copy()
@@ -188,8 +215,41 @@ with mlflow.start_run(experiment_id=experiment.experiment_id) as run:
     # =========================
     mlflow.log_artifacts(ARTIFACTS_DIR)
 
-# =========================
-# Final prints
-# =========================
-print(f"Accuracy: {accuracy:.4f}")
-print(f"F1-score: {f1:.4f}")
+    # =========================
+    # Final prints
+    # =========================
+    print(f"Accuracy: {accuracy:.4f}")
+    print(f"F1-score: {f1:.4f}")
+
+    from mlflow.genai.scorers import Correctness
+
+    @mlflow.trace(name="genai_evaluation_prediction")
+    def predict_fn(**inputs):
+
+        if "row_dict" in inputs:
+            inputs = inputs["row_dict"]
+
+        df = pd.DataFrame([inputs])
+        pred = pipeline.predict(df)[0]
+        return pred
+
+
+    # Build evaluation dataset
+    eval_dataset = []
+
+    for i in range(50):  # sample
+        row = X_test.iloc[i].to_dict()
+        eval_dataset.append({
+            "inputs": row,
+            "expectations": {
+                "expected_response": y_test.iloc[i]
+            }
+        })
+
+
+    # Run GenAI evaluation
+    mlflow.genai.evaluate(
+        data=eval_dataset,
+        predict_fn=predict_fn,
+        scorers=[Correctness()],
+    )

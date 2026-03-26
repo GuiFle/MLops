@@ -1,0 +1,8 @@
+{
+    "dataset_name": "/home/local.isima.fr/gufleury1/Documents/MLops/data/adult/adult_train.csv",
+    "dataset_shape": {
+        "rows": 48842,
+        "columns": 15
+    },
+    "target_column": "income"
+}
