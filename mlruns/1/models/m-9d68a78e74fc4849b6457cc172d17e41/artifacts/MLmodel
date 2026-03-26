@@ -1,0 +1,23 @@
+artifact_path: /home/local.isima.fr/gufleury1/Documents/MLops/mlruns/1/models/m-9d68a78e74fc4849b6457cc172d17e41/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.2
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-9d68a78e74fc4849b6457cc172d17e41
+model_size_bytes: 46524
+model_uuid: m-9d68a78e74fc4849b6457cc172d17e41
+prompts: null
+run_id: 42a20c5ac82f47cab9aa01b7f8a72933
+utc_time_created: '2026-03-26 08:52:58.487289'

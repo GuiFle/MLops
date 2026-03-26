@@ -33,7 +33,9 @@ MLOPS_TP1/
 ## Liste des commandes a potentiellement utiliser
 
 ## Venv
+python -m venv .venv
 source .venv/bin/activate
+pip install --upgrade pip
 ## Requirement
 pip freeze > requirements.txt
 pip install -r requirements.txt

@@ -145,7 +145,7 @@ elif page == "Batch Prediction & Profiling":
                     
     # --- Profiling Report ---
     st.header("Profiling Report")
-    profile_path = "artifacts/adult_dataset_profile.html"
+    profile_path = "src/artifacts/adult_dataset_profile.html"
     if os.path.exists(profile_path):
         with open(profile_path, "r", encoding="utf-8") as f:
             html_content = f.read()
