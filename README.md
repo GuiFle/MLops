@@ -52,3 +52,5 @@ newgrp docker
 docker build -t adult-ml-app .
 docker run -d -p 8000:8000 -p 8501:8501 --name adult-container adult-ml-app
 docker ps
+## MLflow
+mlflow ui --backend-store-uri sqlite:///mlflow.db
