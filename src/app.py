@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import os
 import streamlit.components.v1 as components
-
+API_URL = "https://mlops-1-e9jj.onrender.com"
 st.set_page_config(page_title="Adult Income Prediction", layout="wide")
 
 # --- Sidebar for navigation ---
@@ -63,7 +63,7 @@ if page == "Single Prediction":
     }
 
     if st.button("Predict"):
-        response = requests.post("http://127.0.0.1:8000/predict", json={"features": input_data})
+        response = requests.post(f"{API_URL}/predict", json={"features": input_data})
         if response.status_code == 200:
             data = response.json()
             if "results" in data:
@@ -99,7 +99,7 @@ elif page == "Batch Prediction & Profiling":
                 # Convert DataFrame to list of dicts for batch prediction
                 features_list = X_new.to_dict(orient="records")
                 response = requests.post(
-                    "http://127.0.0.1:8000/predict",
+                    f"{API_URL}/predict",
                     json={"features": features_list}
                 )
 
