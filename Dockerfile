@@ -22,6 +22,6 @@ COPY mlruns/ mlruns/
 # Add supervisor config
 COPY supervisord.conf /etc/supervisord.conf
 
-EXPOSE 8000 8501 5000
+EXPOSE 8501 8000
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
