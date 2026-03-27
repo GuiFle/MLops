@@ -23,6 +23,6 @@ RUN mkdir -p /app/logs
 # Add supervisor config
 COPY supervisord.conf /etc/supervisord.conf
 
-EXPOSE 8000 8501 5000
+EXPOSE 8000 8501
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
