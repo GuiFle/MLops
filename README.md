@@ -49,8 +49,9 @@ sudo apt install docker.io
 sudo systemctl start docker
 sudo usermod -aG docker $USER
 newgrp docker
-docker build -t adult-ml-app .
-docker run -d -p 8000:8000 -p 8501:8501 --name adult-container adult-ml-app
+docker build -t ml-project .
+docker run -p 8000:8000 -p 8501:8501 -p 5000:5000 ml-project
+adult-container adult-ml-app
 docker ps
 ## MLflow
 mlflow ui --backend-store-uri sqlite:///mlflow.db
