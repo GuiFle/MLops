@@ -18,7 +18,8 @@ COPY src/ src/
 COPY data/ data/
 COPY mlflow.db .
 COPY mlruns/ mlruns/
-
+# Create logs directory for supervisord
+RUN mkdir -p /app/logs
 # Add supervisor config
 COPY supervisord.conf /etc/supervisord.conf
 
