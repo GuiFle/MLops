@@ -32,3 +32,5 @@ def test_inference_predict():
     assert (y_prob >= 0).all() and (y_prob <= 1).all(), "predict_proba contains values outside [0,1]"
     
     print("✅ test_inference passed: predict and predict_proba OK")
+
+    
