@@ -1,6 +1,7 @@
+# src/test_api.py
 import pytest
 from fastapi.testclient import TestClient
-from api import app, CLASS_MAPPING  # make sure your API uses Adult dataset
+from api import app, CLASS_MAPPING  # Assure-toi que ton API correspond au dataset Adult
 
 client = TestClient(app)
 
@@ -28,7 +29,6 @@ def test_metadata():
 # POST /predict with valid features
 # -----------------------------
 def test_predict_valid():
-    # Remplace la partie du test qui fait client.post("/predict", json={})
     valid_input = {
         "features": {
             "age": 37,
@@ -68,30 +68,34 @@ def test_predict_missing_features():
     assert "Missing columns" in data["error"]
 
 # -----------------------------
-# POST /predict with no body (default CSV)
+# POST /predict with default input (was failing)
 # -----------------------------
 def test_predict_default_csv():
-    # Remplir toutes les colonnes attendues
     test_input = {
-        "age": 37,
-        "workclass": "Private",
-        "fnlwgt": 284582,
-        "education": "Bachelors",
-        "education_num": 13,
-        "marital_status": "Married-civ-spouse",
-        "occupation": "Exec-managerial",
-        "relationship": "Husband",
-        "race": "White",
-        "sex": "Male",
-        "capital_gain": 0,
-        "capital_loss": 0,
-        "hours_per_week": 40,
-        "native_country": "United-States"
+        "features": {  # ⚠️ clé "features" obligatoire
+            "age": 37,
+            "workclass": "Private",
+            "fnlwgt": 284582,
+            "education": "Bachelors",
+            "education_num": 13,
+            "marital_status": "Married-civ-spouse",
+            "occupation": "Exec-managerial",
+            "relationship": "Husband",
+            "race": "White",
+            "sex": "Male",
+            "capital_gain": 0,
+            "capital_loss": 0,
+            "hours_per_week": 40,
+            "native_country": "United-States"
+        }
     }
 
     response = client.post("/predict", json=test_input)
+    print(response.json())  # pour debug si besoin
     assert response.status_code == 200
 
-    data = response.json()
-    assert "results" in data
-    assert "prediction" in data["results"][0]
+    results = response.json().get("results", [])
+    assert len(results) == 1
+    assert "prediction" in results[0]
+    assert "proba" in results[0]
+    assert results[0]["task"] == "classification"
