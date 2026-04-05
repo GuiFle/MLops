@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import os
 import streamlit.components.v1 as components
-API_URL = "https://mlops-1-e9jj.onrender.com"
+API_URL = "https://mlops-31yn.onrender.com"
 st.set_page_config(page_title="Adult Income Prediction", layout="wide")
 
 # --- Sidebar for navigation ---
