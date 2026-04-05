@@ -1,8 +1,6 @@
-import pandas as pd
 from joblib import load
 
-ARTIFACTS_DIR = "artifacts/"
-MODEL_FILE = ARTIFACTS_DIR + "model.joblib"
+MODEL_FILE = "src/artifacts/model.joblib"  
 def test_inference_predict():
     # Load the trained model
     model = load(MODEL_FILE)

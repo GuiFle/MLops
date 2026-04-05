@@ -28,23 +28,26 @@ def test_metadata():
 # POST /predict with valid features
 # -----------------------------
 def test_predict_valid():
-    features = {
-        "age": 37,
-        "workclass": "Private",
-        "fnlwgt": 284582,
-        "education": "Bachelors",
-        "education_num": 13,          # changed
-        "marital_status": "Married-civ-spouse",  # changed
-        "occupation": "Exec-managerial",
-        "relationship": "Husband",
-        "race": "White",
-        "sex": "Male",
-        "capital_gain": 0,            # changed
-        "capital_loss": 0,            # changed
-        "hours_per_week": 40,         # changed
-        "native_country": "United-States"  # changed
+    # Remplace la partie du test qui fait client.post("/predict", json={})
+    valid_input = {
+        "features": {
+            "age": 37,
+            "workclass": "Private",
+            "fnlwgt": 284582,
+            "education": "Bachelors",
+            "education_num": 13,
+            "marital_status": "Never-married",
+            "occupation": "Prof-specialty",
+            "relationship": "Not-in-family",
+            "race": "White",
+            "sex": "Male",
+            "capital_gain": 0,
+            "capital_loss": 0,
+            "hours_per_week": 40,
+            "native_country": "United-States"
+        }
     }
-    response = client.post("/predict", json={"features": features})
+    response = client.post("/predict", json=valid_input)
     assert response.status_code == 200
     data = response.json()
     assert "results" in data

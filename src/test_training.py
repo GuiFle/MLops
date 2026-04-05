@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-ARTIFACTS_DIR = "artifacts/"
+ARTIFACTS_DIR = "src/artifacts/"
 MODEL_FILE = os.path.join(ARTIFACTS_DIR, "model.joblib")
 
 def test_training_creates_model():
@@ -11,7 +11,7 @@ def test_training_creates_model():
     
     # Run the training script for the Adult dataset
     result = subprocess.run(
-        ["python3", "mlops.py"],  # make sure mlops.py now trains on adult_train.csv
+        ["python3", "src/training.py"],  # anciennement mlops.py
         capture_output=True,
         text=True
     )
