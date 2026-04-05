@@ -16,6 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy Streamlit app
 COPY src/app.py src/
 COPY data/ data/
+COPY src/artifacts/ src/artifacts/
 
 # Expose port for Streamlit
 EXPOSE 8501
