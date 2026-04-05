@@ -38,8 +38,8 @@ MLOPS_TP1/
 ```
 ## Liens vers les applications déployées
 
-* API FastAPI : [https://adult-ml-api.onrender.com](https://adult-ml-api.onrender.com)
-* Interface Streamlit : [https://adult-ml-app.onrender.com](https://adult-ml-app.onrender.com)
+* API FastAPI : [https://adult-ml-api.onrender.com](https://mlops-31yn.onrender.com/docs)
+* Interface Streamlit : [https://adult-ml-app.onrender.com](https://mlops-1-e9jj.onrender.com/)
 
 ## Commandes utiles
 
