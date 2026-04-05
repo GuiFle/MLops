@@ -72,7 +72,7 @@ def test_predict_missing_features():
 # -----------------------------
 def test_predict_default_csv():
     test_input = {
-        "features": {  # ⚠️ clé "features" obligatoire
+        "features": { 
             "age": 37,
             "workclass": "Private",
             "fnlwgt": 284582,
